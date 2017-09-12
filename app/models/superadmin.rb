@@ -1,0 +1,2 @@
+class Superadmin < ApplicationRecord
+end
