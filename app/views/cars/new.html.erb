@@ -1,0 +1,30 @@
+<div>
+    <h2>New a car</h2>
+    <hr>
+    <%= form_for @car do |f| %>
+    Plate
+    <%= f.text_field :plate %>
+    <br>
+    Make
+    <br>
+    <%= f.text_field :make %>
+    <br>
+		Model
+		<br>
+		<%= f.text_field :model %>
+		<br>
+		Rate
+    <br>
+    <%= f.number_field :rate %>
+    <br>
+		Style
+    <br>
+    <%= f.text_field :style %>
+    <br>
+		Location
+		<br>
+		<%= f.text_field :location %>
+		<br>
+    <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+    <% end %>
+</div>
