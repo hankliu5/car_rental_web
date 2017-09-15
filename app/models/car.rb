@@ -1,3 +1,4 @@
 class Car < ApplicationRecord
-	resourcify
+  resourcify
+  validates :plate, :make, :model, :rate, :style, :location, presence: true
 end
