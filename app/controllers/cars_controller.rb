@@ -21,6 +21,15 @@ class CarsController < ApplicationController
 		@car = Car.find(params[:id])
 	end
 
+	def edit
+	end
+
+	def update
+	end
+
+	def destroy
+	end
+
 	private
 	def car_params
 		params.require(:car).permit(:plate, :make, :model, :rate, :style, :location)
