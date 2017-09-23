@@ -4,7 +4,7 @@
 		<li> <%= link_to("Log in", new_user_session_path) %> </li>
 	<% else %>
 		<li>
-			<a href="#">Hello, <%= current_user.email %>
+			Hello, <%= current_user.email %>
 				<b></b>
 			</a>
 			<ul>
@@ -13,4 +13,6 @@
 			</ul>
 		</li>
 	<% end %>
+	<li><%= link_to("User List", users_path) %></li>
+	<li><%= link_to("Car List", cars_path) %></li>
 </div>
