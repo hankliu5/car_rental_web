@@ -1,6 +1,8 @@
 <div>
 	<div>
-		<%= link_to("New car", new_car_path) %>
+		<% if can? :manage, Car %>
+			<%= link_to("New car", new_car_path) %>
+		<% end %>
 	</div>
 	<table>
 		<thead>
@@ -25,9 +27,11 @@
 				<td><%= car.style %></td>
 				<td><%= car.location %></td>
 				<td>
-					<%= link_to("Edit", edit_car_path(car))%>
-					<%= link_to("Delete", car_path(car),
-                          method: :delete, data: { confirm: "Are you sure?" } )%>
+					<% if can? :manage, Car %>
+						<%= link_to("Edit", edit_car_path(car))%>
+						<%= link_to("Delete", car_path(car),
+	                          method: :delete, data: { confirm: "Are you sure?" } )%>
+					<% end %>
 				</td>
 			</tr>
 			<% end %>
