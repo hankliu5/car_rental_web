@@ -52,8 +52,10 @@ class UsersController < ApplicationController
 
 	def destroy
 			@user = User.find(params[:id])
-			@user.destroy
-			redirect_to users_path, notice: 'User information has been deleted!'
+      admin_try_to_edit_admins
+			if @user.destroy
+  			redirect_to users_path, notice: 'User information has been deleted!'
+      end
 	end
 
   private
