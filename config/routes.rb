@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :cars
   root 'cars#index'
   devise_for :users, :path_prefix => 'd'
-  resources :users, :only =>[:show]
+  resources :users
 end
