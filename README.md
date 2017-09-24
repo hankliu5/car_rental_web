@@ -52,10 +52,10 @@ All admins can perform the following tasks:
 		- An admin can edit a reservation on behalf of a customer.
 	- View the checkout history of a car.
 	- Delete a car from the system
-	- Manage customers
-		- List all customers and profile attributes (except password), with an option to edit a particular customer
-		- View the checkout history of a customer
-		- Delete a customer
+- Manage customers
+	- List all customers and profile attributes (except password), with an option to edit a particular customer
+	- View the checkout history of a customer
+	- Delete a customer
 
 ## Customers
 A customer will have the following attributes: email (unique for each member), name and password and rental charge. The rental charge  is computed from (rental rate ✕ the number of hours the customer held the car)
