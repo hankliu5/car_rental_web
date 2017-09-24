@@ -1,0 +1,29 @@
+<div>
+	<div>
+		<% if can? :manage, Reservation %>
+			<%= link_to("New reservation", new_reservation_path) %>
+		<% end %>
+	</div>
+	<table>
+		<thead>
+			<tr>
+				<td>#</td>
+				<td>Pick up time</td>
+				<td>Return time</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @reservations.each do |reservation| %>
+			<tr>
+				<td>
+					<% if can? :manage, Reservation %>
+						<%= link_to("Edit", edit_reservation_path(reservation))%>
+						<%= link_to("Delete", reservation_path(reservation),
+	                          method: :delete, data: { confirm: "Are you sure?" } )%>
+					<% end %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

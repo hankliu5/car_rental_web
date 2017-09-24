@@ -29,9 +29,21 @@
 				<td>
 					<% if can? :manage, Car %>
 						<%= link_to("Edit", edit_car_path(car))%>
+						<!--
 						<%= link_to("Delete", car_path(car),
 	                          method: :delete, data: { confirm: "Are you sure?" } )%>
+						  -->
 					<% end %>
+					<% if can? :manage, Reservation %>
+					<!--
+						<%= link_to("Edit", edit_reservation_path(car))%>
+						<%= link_to("Delete", reservations_path(car),
+	                          method: :delete, data: { confirm: "Are you sure?" } )%>
+						  -->
+				    <% else %>
+						<%= link_to("Make a Reservation", new_car_reservation_path(car))%>
+					<% end %>
+
 				</td>
 			</tr>
 			<% end %>

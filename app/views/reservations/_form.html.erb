@@ -1,0 +1,21 @@
+<%= form_for [@car, @reservation] do |f| %>
+  <% if @reservation.errors.any? %>
+      <ul>
+      <% @reservation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :pick_up_time %><br>
+    <%= f.date_select :pick_up_time %>
+  </div>
+  <div class="field">
+    <%= f.label :return_time %><br>
+    <%= f.date_select :return_time %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

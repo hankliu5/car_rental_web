@@ -19,4 +19,12 @@
   <% else %>
 	  available</p>
   <% end %>
+
+  <% @reservations.each do |reservation| %>
+          <tr>
+            <td><%= reservation.pick_up_time %></td>
+            <td><%= reservation.return_time %></td>
+          </tr>
+  <% end %>
+
 </div>

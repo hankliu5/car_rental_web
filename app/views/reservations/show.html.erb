@@ -1,0 +1,10 @@
+<div>
+	<div>
+		<%= link_to("Make a Reservation", new_car_reservation_path(@reservation)) %>
+	</div>
+	<h2>Pick up time:
+		<%= @reservation.pick_up_time %></h2>
+	<h2>Return time:
+		<%= @reservation.return_time %></h2>
+
+</div>

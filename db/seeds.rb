@@ -16,7 +16,9 @@ car_list = [
 
 user_list = [
 	["Hank", "yul560@eng.ucsd.edu", "123456", "admin"],
-	["Otto", "yhu22@ncsu.edu", "123456", "user"]
+	["Otto", "yhu22@ncsu.edu", "123456", "admin"],
+	["HYC", "hyc@ucsd.edu", "123456", "user"],
+	["Bunny", "bunny@ucsd.edu", "123456", "user"]
 ]
 
 car_list.each do |plate, make, model, rate, style, location, checkout|
