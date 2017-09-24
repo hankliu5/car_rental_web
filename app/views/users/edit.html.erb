@@ -1,0 +1,26 @@
+<h2>Edit <%= @user.username.to_s.humanize %></h2>
+<%= form_for @user do |f| %>
+<% if @user.errors.any? %>
+<ul>
+	<% @user.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
+<% end %>
+
+<div class="field">
+	<%= f.label :username %><br/>
+	<%= f.text_field :username, autofocus: true %>
+</div>
+
+<div class="field">
+	<%= f.label :email %><br/>
+	<%= f.email_field :email, autofocus: true %>
+</div>
+
+<div class="actions">
+	<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+</div>
+<% end %>
+
+<%= link_to "Back", :back %>
