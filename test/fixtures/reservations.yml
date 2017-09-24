@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pick_up_time: 2017-09-24 08:35:03
+  return_time: 2017-09-24 08:35:03
+  user_id: 1
+  car_id: 1
+
+two:
+  pick_up_time: 2017-09-24 08:35:03
+  return_time: 2017-09-24 08:35:03
+  user_id: 1
+  car_id: 1
