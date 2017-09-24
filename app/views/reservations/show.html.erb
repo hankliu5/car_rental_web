@@ -1,10 +1,17 @@
 <div>
 	<div>
-		<%= link_to("Make a Reservation", new_car_reservation_path(@reservation)) %>
+		<%= link_to("Make a Reservation", new_reservation_path(@reservation)) %>
 	</div>
-	<h2>Pick up time:
-		<%= @reservation.pick_up_time %></h2>
-	<h2>Return time:
-		<%= @reservation.return_time %></h2>
+	<% @reservations.each do |reservation| %>
+            <tr>
+  			Pick up time:
+              <td><%= reservation.pick_up_time %></td>
+
+  			<span style="padding-left:2em"></span>
+  			Return time:
+              <td><%= reservation.return_time %></td>
+            </tr>
+  	  	  <br>
+    <% end %>
 
 </div>

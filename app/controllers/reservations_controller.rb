@@ -1,21 +1,23 @@
 class ReservationsController < ApplicationController
+
   def index
-    @reservations = Reservation.all
+    @all_reservations = Reservation.all
+    @reservations = []
+    @all_reservations.each do |r|
+        @reservations << r if r.user_id == current_user.id
+    end
   end
 
   def new
-    @car = Car.find(params[:car_id])
     @reservation = Reservation.new
+    @car = Car.find(params[:car_id])
   end
 
   def create
-    @car = Car.find(params[:car_id])
     @reservation = Reservation.new(reservation_params)
-    @reservation.car = @car
-    @reservation.user = current_user
 
     if @reservation.save
-      redirect_to reservations_path(@car)
+      redirect_to reservations_path
     else
       render :new
     end
@@ -48,6 +50,6 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:user_id, :car_id)
+    params.require(:reservation).permit(:user_id, :car_id, :pick_up_time, :return_time)
   end
 end
