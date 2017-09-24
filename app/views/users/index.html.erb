@@ -2,6 +2,7 @@
 	<div>
 	</div>
 	<h2>Admins</h2>
+	<p><%= link_to("add a new #{current_user.roles.find(1).name}", new_user_path) %></p>
 		<table>
 			<thead>
 				<tr>
