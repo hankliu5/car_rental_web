@@ -15,7 +15,7 @@ car_list = [
 ]
 
 user_list = [
-	["Hank", "yul560@eng.ucsd.edu", "123456", "admin"],
+	["Hank", "yul560@eng.ucsd.edu", "123456", "superadmin"],
 	["Otto", "yhu22@ncsu.edu", "123456", "admin"],
 	["HYC", "hyc@ucsd.edu", "123456", "user"],
 	["Bunny", "bunny@ucsd.edu", "123456", "user"]
@@ -38,6 +38,7 @@ user_list.each do |name, email, pw, role|
 	user.username = name
 	user.email = email
 	user.password = pw
+	user.password_confirmation = pw
 	user.save
 	user.add_role role
 end

@@ -1,13 +1,17 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_permission, except: [:edit_password, :update_password]
+  load_and_authorize_resource
+  skip_authorize_resource :only => [:edit_password, :update_password]
 
   def index
     @all_users = User.all
+    @superadmins = []
     @admins = []
     @users = []
     @all_users.each do |user|
-      if user.has_role? :admin
+      if user.has_role? :superadmin
+        @superadmins << user
+      elsif user.has_role? :admin
         @admins << user
       else
         @users << user
@@ -80,7 +84,7 @@ class UsersController < ApplicationController
   end
 
   def check_permission
-    redirect_to root_path if current_user && (!current_user.has_role? :admin)
+    redirect_to root_path if current_user && (!current_user.has_role? [:superadmin, :admin])
   end
 
   def update_user_params

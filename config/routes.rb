@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   resources :reservations
 
   root 'cars#index'
-  devise_for :users, path_prefix: 'd'
-  resources :users
+  devise_for :users, path_prefix: 'd', controllers: { registrations: 'users/registrations' }
 
+  resources :users
   resource :user do
     collection do
       get 'edit_password'

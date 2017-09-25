@@ -1,8 +1,27 @@
 <div>
 	<div>
+		<p><%= link_to("add a new #{current_user.roles.find(1).name}", new_user_path) %></p>
+		<h2> Superadmins </h2>
+		<table>
+			<thead>
+				<tr>
+					<td>#</td>
+					<td>Superadmin name</td>
+					<td>Superadmin email</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @superadmins.each do |superadmin| %>
+				<tr>
+					<td>#</td>
+					<td><%= link_to superadmin.username, user_path(superadmin) %></td>
+					<td><%= superadmin.email %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</div>
 	<h2>Admins</h2>
-	<p><%= link_to("add a new #{current_user.roles.find(1).name}", new_user_path) %></p>
 		<table>
 			<thead>
 				<tr>
