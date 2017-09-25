@@ -1,10 +1,9 @@
 class ReservationsController < ApplicationController
-
   def index
     @all_reservations = Reservation.all
     @reservations = []
     @all_reservations.each do |r|
-        @reservations << r if r.user_id == current_user.id
+      @reservations << r if r.user_id == current_user.id
     end
   end
 
@@ -42,9 +41,9 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-      @reservation = Reservation.find(params[:id])
-      @reservation.destroy
-      redirect_to reservations_path, notice: 'Reservation has been deleted!'
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to reservations_path, notice: 'Reservation has been deleted!'
   end
 
   private

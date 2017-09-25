@@ -1,41 +1,40 @@
 <div>
-	<div>
-		<% if can? :manage, Car %>
-			<%= link_to("New car", new_car_path) %>
-		<% end %>
-	</div>
-	<table>
-		<thead>
-			<tr>
-				<td>#</td>
-				<td>Plate</td>
-				<td>Make</td>
-				<td>Model</td>
-				<td>Rate</td>
-				<td>Style</td>
-				<td>Location</td>
-			</tr>
-		</thead>
-		<tbody>
-			<% @cars.each do |car| %>
-			<tr>
-				<td>#</td>
-				<td><%= link_to(car.plate, car_path(car)) %></td>
-				<td><%= car.make %></td>
-				<td><%= car.model %></td>
-				<td><%= car.rate %></td>
-				<td><%= car.style %></td>
-				<td><%= car.location %></td>
-				<td>
-					<% if can? :manage, Car %>
-						<%= link_to("Edit", edit_car_path(car))%>
-					<% else %>
-						<%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
-					<% end %>
-
-				</td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <div>
+    <% if can? :manage, Car %>
+      <%= link_to("New car", new_car_path) %>
+    <% end %>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Plate</td>
+        <td>Make</td>
+        <td>Model</td>
+        <td>Rate</td>
+        <td>Style</td>
+        <td>Location</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cars.each do |car| %>
+        <tr>
+          <td>#</td>
+          <td><%= link_to(car.plate, car_path(car)) %></td>
+          <td><%= car.make %></td>
+          <td><%= car.model %></td>
+          <td><%= car.rate %></td>
+          <td><%= car.style %></td>
+          <td><%= car.location %></td>
+          <td>
+            <% if can? :manage, Car %>
+              <%= link_to("Edit", edit_car_path(car))%>
+            <% else %>
+              <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

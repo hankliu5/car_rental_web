@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-		resource.add_role :user
+    resource.add_role :user
   end
 
   # GET /resource/edit

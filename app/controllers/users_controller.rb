@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-  skip_authorize_resource :only => [:edit_password, :update_password]
+  skip_authorize_resource only: %i[edit_password update_password]
 
   def index
     @all_users = User.all
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
   end
 
   def check_permission
-    redirect_to root_path if current_user && (!current_user.has_role? [:superadmin, :admin])
+    redirect_to root_path if current_user && (!current_user.has_role? %i[superadmin admin])
   end
 
   def update_user_params

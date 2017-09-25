@@ -1,23 +1,23 @@
 <div>
-	<div>
-		<%= link_to("Edit Details", edit_car_path(@car)) %>
-	</div>
-	<h2>Plate:
-		<%= @car.plate %></h2>
-	<p>Make:
-		<%= @car.make %></p>
-	<p>Model:
-		<%= @car.model %></p>
-	<p>Rate per Hour:<%= @car.rate %></p>
-	<p>Style:
-		<%= @car.style %></p>
-	<p>Location:
-		<%= @car.location %></p>
-	<p>Status:
-	<% if @car.checkout %>
-		checkout</p>
-  <% else %>
-	  available</p>
-  <% end %>
-
+  <div>
+    <%= link_to("Edit Details", edit_car_path(@car)) %>
+  </div>
+  <h2>Plate:
+    <%= @car.plate %></h2>
+  <p>Make:
+    <%= @car.make %></p>
+  <p>Model:
+    <%= @car.model %></p>
+  <p>Rate per Hour:<%= @car.rate %></p>
+  <p>Style:
+    <%= @car.style %></p>
+  <p>Location:
+    <%= @car.location %></p>
+  <p>Status:
+    <% if @car.checkout %>
+      checkout
+    <% else %>
+      available
+    <% end %>
+  </p>
 </div>

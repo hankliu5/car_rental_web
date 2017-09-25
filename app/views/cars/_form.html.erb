@@ -1,12 +1,12 @@
 <div>
-    <hr>
-    <%= form_for @car do |f| %>
+  <hr>
+  <%= form_for @car do |f| %>
     <% if @car.errors.any? %>
-    <ul>
-      <% @car.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+      <ul>
+        <% @car.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
     <% end %>
     Plate
     <%= f.text_field :plate %>
@@ -15,22 +15,22 @@
     <br>
     <%= f.text_field :make %>
     <br>
-	Model
-	<br>
-	<%= f.text_field :model %>
-	<br>
-	Rate
+    Model
+    <br>
+    <%= f.text_field :model %>
+    <br>
+    Rate
     <br>
     <%= f.number_field :rate %>
     <br>
-	Style
+    Style
     <br>
     <%= f.text_field :style %>
     <br>
-	Location
-	<br>
-	<%= f.text_field :location %>
-	<br>
+    Location
+    <br>
+    <%= f.text_field :location %>
+    <br>
     <%= f.submit "Submit", :disable_with => 'Submiting...' %>
-    <% end %>
+  <% end %>
 </div>

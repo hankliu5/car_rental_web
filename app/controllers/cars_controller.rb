@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-	load_and_authorize_resource
+  load_and_authorize_resource
 
   def index
     @cars = Car.all
@@ -39,9 +39,9 @@ class CarsController < ApplicationController
   end
 
   def destroy
-      @car = Car.find(params[:id])
-      @car.destroy
-      redirect_to cars_path, notice: 'Car information has been deleted!'
+    @car = Car.find(params[:id])
+    @car.destroy
+    redirect_to cars_path, notice: 'Car information has been deleted!'
   end
 
   private

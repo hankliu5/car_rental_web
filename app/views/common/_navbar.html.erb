@@ -1,22 +1,20 @@
 <div>
-	<% if !current_user %>
-		<li> <%= link_to("Sign Up", new_user_registration_path) %> </li>
-		<li> <%= link_to("Log in", new_user_session_path) %> </li>
-	<% else %>
-		<li>
-			Hello, <%= current_user.username %>
-				<b></b>
-			</a>
-			<ul>
-				<li> <%= link_to("Edit Profile", edit_user_registration_path) %></li>
-				<li> <%= link_to("Change Password", edit_password_user_path) %></li>
-				<li> <%= link_to("Log Out", destroy_user_session_path, method: :delete) %> </li>
-			</ul>
-		</li>
-	<% end %>
-	<% if can? :manage, User %>
-		<li><%= link_to("User List", users_path) %></li>
-	<% end %>
-	<li><%= link_to("Car List", cars_path) %></li>
-	<li><%= link_to("Reservation List", reservations_path) %></li>
+  <% if !current_user %>
+    <li> <%= link_to("Sign Up", new_user_registration_path) %> </li>
+    <li> <%= link_to("Log in", new_user_session_path) %> </li>
+  <% else %>
+    <li>
+      <b>Hello, <%= current_user.username %></b>
+      <ul>
+        <li> <%= link_to("Edit Profile", edit_user_registration_path) %></li>
+        <li> <%= link_to("Change Password", edit_password_user_path) %></li>
+        <li> <%= link_to("Log Out", destroy_user_session_path, method: :delete) %> </li>
+      </ul>
+    </li>
+  <% end %>
+  <% if can? :manage, User %>
+    <li><%= link_to("User List", users_path) %></li>
+  <% end %>
+  <li><%= link_to("Car List", cars_path) %></li>
+  <li><%= link_to("Reservation List", reservations_path) %></li>
 </div>

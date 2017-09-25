@@ -1,17 +1,15 @@
 <div>
-	<div>
-		<%= link_to("Make a Reservation", new_reservation_path(@reservation)) %>
-	</div>
-	<% @reservations.each do |reservation| %>
-            <tr>
-  			Pick up time:
-              <td><%= reservation.pick_up_time %></td>
-
-  			<span style="padding-left:2em"></span>
-  			Return time:
-              <td><%= reservation.return_time %></td>
-            </tr>
-  	  	  <br>
-    <% end %>
-
+  <div>
+    <%= link_to("Make a Reservation", new_reservation_path(@reservation)) %>
+  </div>
+  <% @reservations.each do |reservation| %>
+    <tr>
+      Pick up time:
+      <td><%= reservation.pick_up_time %></td>
+      <span style="padding-left:2em"></span>
+      Return time:
+      <td><%= reservation.return_time %></td>
+    </tr>
+    <br>
+  <% end %>
 </div>
