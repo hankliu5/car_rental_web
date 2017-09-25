@@ -1,15 +1,35 @@
 <div>
   <div>
-    <%= link_to("Make a Reservation", new_reservation_path(@reservation)) %>
+    <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => @car.id }%>
   </div>
-  <% @reservations.each do |reservation| %>
-    <tr>
-      Pick up time:
-      <td><%= reservation.pick_up_time %></td>
-      <span style="padding-left:2em"></span>
-      Return time:
-      <td><%= reservation.return_time %></td>
-    </tr>
-    <br>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <td>Username</td>
+        <td>Car Plate</td>
+        <td>Car Model</td>
+        <td>Car Make</td>
+        <td>Pick up time</td>
+        <td>Return time</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @user.username %></td>
+        <td><%= @car.plate %></td>
+        <td><%= @car.make %></td>
+        <td><%= @car.model %></td>
+        <td><%= @reservation.pick_up_time %></td>
+        <td><%= @reservation.return_time %></td>
+        <td><%= link_to "show car's detail", car_path(@car) %></td>
+        <td>
+          <% if can? :manage, Reservation %>
+            <%= link_to("Edit", edit_reservation_path)%>
+            <%= link_to("Delete", reservation_path,
+	                          method: :delete, data: { confirm: "Are you sure?" } )%>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

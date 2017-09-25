@@ -1,35 +1,79 @@
 <div>
-  <div>
-    <% if can? :manage, Reservation %>
-    <% end %>
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <td>Pick up time</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>Return time</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @reservations.each do |reservation| %>
+  <% if can? :manage, Reservation %>
+    <h2>All Reservations</h2>
+    <table>
+      <thead>
         <tr>
-          <td><%= reservation.pick_up_time %></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><%= reservation.return_time %></td>
-          <td>
-            <% if can? :manage, Reservation %>
-              <%= link_to("Edit", edit_reservation_path)%>
-              <%= link_to("Delete", reservation_path,
-	                          method: :delete, data: { confirm: "Are you sure?" } )%>
-            <% end %>
-          </td>
+          <td>Username</td>
+          <td>Car Plate</td>
+          <td>Car Model</td>
+          <td>Car Make</td>
+          <td>Pick up time</td>
+          <td>Return time</td>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @all_reservations.each do |reservation| %>
+          <% user = User.find(reservation.user_id) %>
+          <% car = Car.find(reservation.car_id) %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= car.plate %></td>
+            <td><%= car.make %></td>
+            <td><%= car.model %></td>
+            <td><%= reservation.pick_up_time %></td>
+            <td><%= reservation.return_time %></td>
+            <td><%= link_to "show car's detail", car_path(car) %></td>
+            <td>
+              <% if can? :manage, Reservation %>
+                <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
+                <%= link_to("Edit", {:controller => "reservations", :action => "edit", :id => reservation.id, :car_id => car.id, :user_id => user.id })%>
+                <%= link_to("Delete", reservation_path(reservation),
+                            method: :delete, data: { confirm: "Are you sure?" } )%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+<% if @user_reservations.any? %>
+  <h2>Your Reservations</h2>
+  <div class="">
+    <table>
+      <thead>
+        <tr>
+          <td>Username</td>
+          <td>Car Plate</td>
+          <td>Car Model</td>
+          <td>Car Make</td>
+          <td>Pick up time</td>
+          <td>Return time</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% @user_reservations.each do |reservation| %>
+          <% user = User.find(reservation.user_id) %>
+          <% car = Car.find(reservation.car_id) %>
+          <tr>
+            <td><%= user.username %></td>
+            <td><%= car.plate %></td>
+            <td><%= car.make %></td>
+            <td><%= car.model %></td>
+            <td><%= reservation.pick_up_time %></td>
+            <td><%= reservation.return_time %></td>
+            <td><%= link_to "show car's detail", car_path(car) %></td>
+            <td>
+              <% if can? :manage, Reservation %>
+                <%= link_to("Edit", edit_reservation_path(reservation))%>
+                <%= link_to("Delete", reservation_path(reservation),
+  	                          method: :delete, data: { confirm: "Are you sure?" } )%>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

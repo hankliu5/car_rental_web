@@ -1,15 +1,17 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @all_reservations = Reservation.all
-    @reservations = []
+    @user_reservations = []
     @all_reservations.each do |r|
-      @reservations << r if r.user_id == current_user.id
+      @user_reservations << r if r.user_id == current_user.id
     end
   end
 
   def new
     @reservation = Reservation.new
     @car = Car.find(params[:car_id])
+    @user = current_user
   end
 
   def create
@@ -24,10 +26,14 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+    @car = Car.find(@reservation.car_id)
+    @user = User.find(@reservation.user_id)
   end
 
   def edit
     @reservation = Reservation.find(params[:id])
+    @car = Car.find(params[:car_id])
+    @user = User.find(params[:user_id])
   end
 
   def update

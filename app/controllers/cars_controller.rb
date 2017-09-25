@@ -22,6 +22,7 @@ class CarsController < ApplicationController
 
   def show
     @car = Car.find(params[:id])
+    @reservations = Reservation.where car_id: @car.id
   end
 
   def edit

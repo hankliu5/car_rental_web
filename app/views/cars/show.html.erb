@@ -20,4 +20,28 @@
       available
     <% end %>
   </p>
+  <% if @reservations.any? %>
+    <div class="">
+      <h2>Reservation History</h2>
+      <table>
+        <thead>
+          <tr>
+            <td>Username</td>
+            <td>Pick up time</td>
+            <td>Return time</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reservations.each do |reservation| %>
+            <% user = User.find(reservation.user_id) %>
+            <tr>
+              <td><%= user.username %></td>
+              <td><%= reservation.pick_up_time %></td>
+              <td><%= reservation.return_time %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
 </div>
