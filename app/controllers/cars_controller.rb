@@ -12,7 +12,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.checkout = false
+    @car.status = "available"
     if @car.save
       redirect_to cars_path
     else

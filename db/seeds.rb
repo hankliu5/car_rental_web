@@ -6,12 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 car_list = [
-	['0000000', 'toyota', 'camry', 15, 'sedan', 'Raleigh', false],
-	['0000010', 'toyota', 'corolla', 15, 'sedan', 'Raleigh', false],
-	['0000200', 'toyota', 'prius', 15, 'sedan', 'Raleigh', false],
-	['0003000', 'toyota', 'mirai', 15, 'sedan', 'Raleigh', false],
-	['0040000', 'toyota', 'yaris', 15, 'sedan', 'Raleigh', false],
-	['0500000', 'toyota', 'Rav4', 15, 'sedan', 'Raleigh', false]
+	['0000000', 'toyota', 'camry', 30, 'sedan', 'Raleigh', "available"],
+	['0000010', 'toyota', 'corolla', 20, 'sedan', 'Raleigh', "available"],
+	['0000200', 'toyota', 'prius', 25, 'sedan', 'Raleigh', "available"],
+	['0003000', 'toyota', 'mirai', 35, 'sedan', 'Raleigh', "reserved"],
+	['0040000', 'toyota', 'yaris', 10, 'sedan', 'Raleigh', "checked out"],
+	['0500000', 'toyota', 'Rav4', 15, 'sedan', 'Raleigh', "checked out"]
 ]
 
 user_list = [
@@ -23,7 +23,7 @@ user_list = [
 	["Bunny", "bunny@ucsd.edu", "user"]
 ]
 
-car_list.each do |plate, make, model, rate, style, location, checkout|
+car_list.each do |plate, make, model, rate, style, location, status|
 	Car.create(
 		plate: plate,
 		make: make,
@@ -31,7 +31,7 @@ car_list.each do |plate, make, model, rate, style, location, checkout|
 		rate: rate,
 		style: style,
 		location: location,
-		checkout: checkout
+		status: status
 	)
 end
 
