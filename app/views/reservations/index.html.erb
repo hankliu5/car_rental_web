@@ -26,7 +26,6 @@
             <td><%= link_to "show car's detail", car_path(car) %></td>
             <td>
               <% if can? :manage, Reservation %>
-                <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
                 <%= link_to("Edit", {:controller => "reservations", :action => "edit", :id => reservation.id, :car_id => car.id, :user_id => user.id })%>
                 <%= link_to("Delete", reservation_path(reservation),
                             method: :delete, data: { confirm: "Are you sure?" } )%>

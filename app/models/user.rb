@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
   validates :username, presence: true
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   validates :password,
