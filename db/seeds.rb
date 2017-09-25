@@ -15,10 +15,12 @@ car_list = [
 ]
 
 user_list = [
-	["Hank", "yul560@eng.ucsd.edu", "123456", "superadmin"],
-	["Otto", "yhu22@ncsu.edu", "123456", "admin"],
-	["HYC", "hyc@ucsd.edu", "123456", "user"],
-	["Bunny", "bunny@ucsd.edu", "123456", "user"]
+	["Hank", "yul560@eng.ucsd.edu", "superadmin"],
+	["YuChia", 'liu19901124@gmail.com', 'superadmin'],
+	["Otto", "yhu22@ncsu.edu", "admin"],
+	["Mitsui", 'yliu224@ncsu.edu', 'admin'],
+	["HYC", "hyc@ucsd.edu", "user"],
+	["Bunny", "bunny@ucsd.edu", "user"]
 ]
 
 car_list.each do |plate, make, model, rate, style, location, checkout|
@@ -33,12 +35,12 @@ car_list.each do |plate, make, model, rate, style, location, checkout|
 	)
 end
 
-user_list.each do |name, email, pw, role|
+user_list.each do |name, email, role|
 	user = User.new
 	user.username = name
 	user.email = email
-	user.password = pw
-	user.password_confirmation = pw
+	user.password = '123456'
+	user.password_confirmation = '123456'
 	user.save
 	user.add_role role
 end

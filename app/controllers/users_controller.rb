@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   skip_authorize_resource only: %i[edit_password update_password]
 
   def index
@@ -25,8 +25,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(new_user_params)
-    @user.add_role(current_user.roles.find(1).name)
     if @user.save
+      @user.add_role(current_user.roles.all[0].name)
       redirect_to users_path
     else
       render :new
@@ -40,12 +40,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    admin_try_to_edit_admins
   end
 
   def update
     @user = User.find(params[:id])
-    admin_try_to_edit_admins
 
     if @user.update(update_user_params)
       redirect_to users_path, notice: 'User information has been updated!'
@@ -77,12 +75,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def admin_try_to_edit_admins
-    if (@user.has_role? :admin) && (current_user.has_role? :admin)
-      redirect_to users_path, alert: 'You cannot edit other admins as an admin.'
-    end
-  end
 
   def check_permission
     redirect_to root_path if current_user && (!current_user.has_role? %i[superadmin admin])

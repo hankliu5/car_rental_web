@@ -7,10 +7,23 @@ class Ability
     user ||= User.new # guest user (not logged in)
     alias_action :create, :read, :update, :destroy, to: :crud
 
-    if user.has_role? :superadmin
-      can :manage, :all
+    if user.has_role? :user
+      can :read, Car
+      can %i[create read], Reservation
+      cannot :crud, User
     elsif user.has_role? :admin
-      can :manage, :all
+      can :manage, Car
+      can :manage, Reservation
+      can :crud, User
+      cannot :destroy, User, id: user.id
+      cannot :crud, User.with_role(:superadmin)
+      cannot :update, User.with_role(:admin)
+      cannot [:update, :destroy], User.with_role(:user)
+    elsif user.has_role? :superadmin
+      can :manage, Car
+      can :manage, User
+      can :manage, Reservation
+      cannot [:edit, :update, :destroy], User.with_any_role(:superadmin)
     else
       can :read, Car
     end
