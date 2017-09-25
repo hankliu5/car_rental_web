@@ -6,6 +6,7 @@
   </div>
   <table>
     <thead>
+	  <h2>Available Cars </h2>
       <tr>
         <td>#</td>
         <td>Plate</td>
@@ -18,6 +19,7 @@
     </thead>
     <tbody>
       <% @cars.each do |car| %>
+	  <% if car.status == 'available' %>
         <tr>
           <td>#</td>
           <td><%= link_to(car.plate, car_path(car)) %></td>
@@ -37,6 +39,8 @@
           </td>
         </tr>
       <% end %>
+
+	 <% end %>
     </tbody>
   </table>
 </div>
