@@ -12,7 +12,7 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.status = "available"
+    @car.checkout = false
     if @car.save
       redirect_to cars_path
     else
@@ -50,4 +50,16 @@ class CarsController < ApplicationController
   def car_params
     params.require(:car).permit(:plate, :make, :model, :rate, :style, :location)
   end
+
+  def check_status car
+      if (car.reservation_time.nil? || (car.reservation_time).to_i > Time.now.to_i && !car.checkout)
+          return "available"
+      elsif ((car.reservation_time).to_i < Time.now.to_i && !car.checkout)
+          return "reserved"
+      else
+          return "checked out"
+      end
+  end
+  helper_method :check_status
+
 end

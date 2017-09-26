@@ -18,9 +18,11 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-
     if @reservation.save
+        @car = Car.find(@reservation.car_id)
+        @car.update_attribute(:reservation_time, @reservation.pick_up_time + 30 * 60)
       redirect_to reservations_path
+
     else
       render :new
     end

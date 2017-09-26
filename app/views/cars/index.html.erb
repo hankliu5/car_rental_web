@@ -15,11 +15,12 @@
         <td>Rate</td>
         <td>Style</td>
         <td>Location</td>
+		<td>Status</td>
       </tr>
     </thead>
     <tbody>
       <% @cars.each do |car| %>
-	  <% if car.status == 'available' %>
+
         <tr>
           <td>#</td>
           <td><%= link_to(car.plate, car_path(car)) %></td>
@@ -28,19 +29,22 @@
           <td><%= car.rate %></td>
           <td><%= car.style %></td>
           <td><%= car.location %></td>
+          <td><%= check_status(car)%></td>
           <td>
             <% if can? :manage, Car %>
               <%= link_to("Edit", edit_car_path(car))%>
               <%= link_to("Delete", car_path(car),
                               method: :delete, data: { confirm: "Are you sure?" } )%>
             <% else %>
-              <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
-            <% end %>
+			  <% if check_status(car) == "available" %>
+                <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
+ 			  <% end %>
+			<% end %>
           </td>
         </tr>
       <% end %>
 
-	 <% end %>
+
     </tbody>
   </table>
 </div>
