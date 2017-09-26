@@ -9,11 +9,11 @@
 
   <br>
     <%= f.label :pick_up_time %><br>
-    <%= f.datetime_select :pick_up_time, default: 7.days.from_now %>
+    <%= f.datetime_select :pick_up_time, :start_year => 2017, :default => 0.days.from_now.in_time_zone(@timezone) %>
   <br>
   <br>
     <%= f.label :return_time %><br>
-    <%= f.datetime_select :return_time, default: 7.days.from_now %>
+    <%= f.datetime_select :return_time %>
   <br>
     <%= f.hidden_field :car_id, value: @car.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
