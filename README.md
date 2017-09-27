@@ -1,3 +1,12 @@
+# Credential
+Email			Password	
+yul560@eng.ucsd.edu 	123456        Superadmin
+liu19901124@gmail.com	123456	      Superadmin	
+yhu22@ncsu.edu		123456        admin
+yliu224@ncsu.edu	123456	      admin
+hyc@ucsd.edu		123456	      user
+bunny@ucsd.edu		123456	      user
+
 # Program 2: Ruby on Rails: Car-rental app
 
 You are tasked with creating a car-rental app.
