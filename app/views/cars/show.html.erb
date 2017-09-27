@@ -14,11 +14,7 @@
   <p>Location:
     <%= @car.location %></p>
   <p>Status:
-    <% if @car.checkout %>
-      checkout
-    <% else %>
-      available
-    <% end %>
+    <%= check_status(@car) %>
   </p>
   <% if @reservations.any? %>
     <div class="">
