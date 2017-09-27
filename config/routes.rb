@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :cars
+
   resources :reservations
+
+  resource :reservation, only: :show do
+    collection do
+      get 'checkout', to: 'reservations#check_out'
+      get 'return_car', to: 'reservations#return_car'
+    end
+  end
 
   root 'cars#index'
   devise_for :users, path_prefix: 'd', controllers: { registrations: 'users/registrations' }
@@ -20,4 +28,6 @@ Rails.application.routes.draw do
       patch 'update_password'
     end
   end
+
+
 end

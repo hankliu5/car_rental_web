@@ -22,7 +22,6 @@ class ReservationsController < ApplicationController
         @car = Car.find(@reservation.car_id)
         @car.update_attribute(:reservation_time, @reservation.pick_up_time + 30 * 60)
       redirect_to reservations_path
-
     else
       render :new
     end
@@ -34,16 +33,36 @@ class ReservationsController < ApplicationController
     @user = User.find(@reservation.user_id)
   end
 
+  def check_out
+    @reservation = Reservation.find(params[:id])
+    @car = Car.find(@reservation.car_id)
+    if @car.update_attribute(:checkout, true)
+      redirect_to reservations_path, notice: "The car #{@car.plate} has been checked out!"
+    else
+      redirect_to reservation_path(@reservation_path), alert: 'something went wrong.'
+    end
+  end
+
+  def return_car
+    @reservation = Reservation.find(params[:id])
+    @car = Car.find(@reservation.car_id)
+    if @car.update_attribute(:checkout, false)
+      redirect_to reservations_path, notice: "The car #{@car.plate} has been returned!"
+    else
+      redirect_to reservation_path(@reservation_path), alert: 'something went wrong.'
+    end
+  end
+
   def edit
     @reservation = Reservation.find(params[:id])
-    @car = Car.find(params[:car_id])
-    @user = User.find(params[:user_id])
+    @car = Car.find(@reservation.car_id)
+    @user = User.find(@reservation.user_id)
   end
 
   def update
     @reservation = Reservation.find(params[:id])
 
-    if @reservation.update(car_params)
+    if @reservation.update(reservation_params)
       redirect_to reservations_path, notice: 'Reservation has been updated!'
     else
       render :edit
