@@ -14,7 +14,7 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.checkout = false
     if @car.save
-      redirect_to cars_path
+      redirect_to cars_path, notice: 'Car information has been created!'
     else
       render :new
     end
@@ -42,7 +42,7 @@ class CarsController < ApplicationController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    redirect_to cars_path, notice: 'Car information has been deleted!'
+    redirect_to cars_path, alert: 'Car information has been deleted!'
   end
 
   private

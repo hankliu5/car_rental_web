@@ -1,12 +1,12 @@
-<div>
-  <div>
+<div class="col-md-12">
+  <div class="car">
     <% if can? :manage, Car %>
       <%= link_to("New car", new_car_path) %>
     <% end %>
   </div>
-  <table>
+  <table class="table table-hover">
     <thead>
-	  <h2>Available Cars </h2>
+      <h2>Available Cars </h2>
       <tr>
         <td>#</td>
         <td>Plate</td>
@@ -15,12 +15,11 @@
         <td>Rate</td>
         <td>Style</td>
         <td>Location</td>
-		<td>Status</td>
+        <td>Status</td>
       </tr>
     </thead>
     <tbody>
       <% @cars.each do |car| %>
-
         <tr>
           <td>#</td>
           <td><%= link_to(car.plate, car_path(car)) %></td>
@@ -32,19 +31,17 @@
           <td><%= check_status(car)%></td>
           <td>
             <% if can? :manage, Car %>
-              <%= link_to("Edit", edit_car_path(car))%>
-              <%= link_to("Delete", car_path(car),
+              <%= link_to("Edit", edit_car_path(car), class: "btn btn-sm btn-default")%>
+              <%= link_to("Delete", car_path(car), class: "btn btn-sm btn-default",
                               method: :delete, data: { confirm: "Are you sure?" } )%>
             <% else %>
-			  <% if check_status(car) == "available" %>
+              <% if check_status(car) == "available" %>
                 <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
- 			  <% end %>
-			<% end %>
+              <% end %>
+            <% end %>
           </td>
         </tr>
       <% end %>
-
-
     </tbody>
   </table>
 </div>
