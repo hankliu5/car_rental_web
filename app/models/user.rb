@@ -5,7 +5,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  before_save :default_values
   has_many :reservations, dependent: :destroy
+
   validates :username, presence: true
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
   validates :password,
@@ -17,4 +19,9 @@ class User < ApplicationRecord
             confirmation: true
 
   validates :password_confirmation, presence: true, if: '!password.nil?'
+
+  def default_values
+      self.fee ||= 0
+  end
+
 end
