@@ -11,7 +11,6 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    console
     @reservation = Reservation.new
     @car = Car.find(params[:car_id])
     @user = current_user
