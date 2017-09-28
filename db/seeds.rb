@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 car_list = [
-	['0000000', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', true],
+	['0000000', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', false],
 	['0032100', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', false],
 	['0827000', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', false],
 	['0099870', 'Toyota', 'Corolla', 20, 'Sedan', 'Raleigh', false],
-	['0103401', 'Toyota', 'Corolla', 20, 'Sedan', 'Cary', true],
+	['0103401', 'Toyota', 'Corolla', 20, 'Sedan', 'Cary', false],
 	['0EDAS10', 'Toyota', 'Corolla', 20, 'Sedan', 'Cary', false],
 	['0000010', 'Toyota', 'Prius', 25, 'Sedan', 'Cary', false],
 	['0000200', 'Toyota', 'Prius', 25, 'Coupe', 'Morrisville', false],
