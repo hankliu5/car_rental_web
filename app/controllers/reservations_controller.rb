@@ -11,6 +11,7 @@ class ReservationsController < ApplicationController
   end
 
   def new
+    console
     @reservation = Reservation.new
     @car = Car.find(params[:car_id])
     @user = current_user
@@ -18,12 +19,13 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
-    if @reservation.save
-        @car = Car.find(@reservation.car_id)
+    @car = Car.find(@reservation.car_id)
+    if !check_reservation_invalid? && @reservation.save
         @car.update_attribute(:reservation_time, (@reservation.pick_up_time + 30*60))
-      redirect_to reservations_path
+      redirect_to reservation_path(@reservation)
     else
-      render :new
+        flash_notice
+        render :new
     end
   end
 
@@ -80,4 +82,33 @@ class ReservationsController < ApplicationController
   def reservation_params
     params.require(:reservation).permit(:user_id, :car_id, :pick_up_time, :return_time)
   end
+
+  def flash_notice
+      flash[:notice] = "The pick up time should be prior to return time" if invalid_select_date?
+      flash[:notice] = "You can not select past time! (Please reselect your date)" if reserve_past_time?
+      flash[:notice] = "You can not advance a reservation by one week (7 days)" if more_than_one_week?
+      flash[:notice] = "You can only reserve a car for 1 hour minimum and 10 hours maximum per day" if invalid_reservation_period?
+  end
+
+  def check_reservation_invalid?
+      invalid_select_date? || reserve_past_time? || more_than_one_week? || invalid_reservation_period?
+  end
+
+  def invalid_select_date?
+      @reservation.return_time - @reservation.pick_up_time < 0
+  end
+
+  def reserve_past_time?
+      @reservation.pick_up_time < Time.now
+  end
+
+  def more_than_one_week?
+      @reservation.return_time - Time.now > 7*24*60*60
+  end
+
+  def invalid_reservation_period?
+      @period = @reservation.return_time - @reservation.pick_up_time
+      (@period < 60*60 && @period > 0) || @period > 10*60*60
+  end
+
 end
