@@ -6,20 +6,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 car_list = [
-	['0000000', 'toyota', 'camry', 30, 'sedan', 'Raleigh', false],
-	['0000010', 'toyota', 'corolla', 20, 'sedan', 'Raleigh', false],
-	['0000200', 'toyota', 'prius', 25, 'sedan', 'Raleigh', false],
-	['0003000', 'toyota', 'mirai', 35, 'sedan', 'Raleigh', false],
-	['0040000', 'toyota', 'yaris', 10, 'sedan', 'Raleigh', true],
-	['0500000', 'toyota', 'Rav4', 15, 'sedan', 'Raleigh', true]
+	['0000000', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', true],
+	['0032100', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', false],
+	['0827000', 'Toyota', 'Camry', 30, 'Sedan', 'Raleigh', false],
+	['0099870', 'Toyota', 'Corolla', 20, 'Sedan', 'Raleigh', false],
+	['0103401', 'Toyota', 'Corolla', 20, 'Sedan', 'Cary', true],
+	['0EDAS10', 'Toyota', 'Corolla', 20, 'Sedan', 'Cary', false],
+	['0000010', 'Toyota', 'Prius', 25, 'Sedan', 'Cary', false],
+	['0000200', 'Toyota', 'Prius', 25, 'Coupe', 'Morrisville', false],
+	['0003000', 'Toyota', 'Mirai', 32, 'Sedan', 'Morrisville', false],
+	['0040000', 'Toyota', 'Yaris', 17, 'Sedan', 'Morrisville', false],
+	['0500000', 'Toyota', 'Rav4', 15, 'Sedan', 'Cary', false],
+	['8276344', 'Honda', 'CR-V', 35, 'SUV', 'San Diego', false],
+	['777FBI7', 'Honda', 'Accord', 18, 'Coupe', 'San Diego', false],
+	['CURRY30', 'Honda', 'Civic', 16, 'Sedan', 'San Diego', false],
+	['LEBRON6', 'Honda', 'Fit', 21, 'Coupe', 'Irvine', false],
+	['MELO007', 'Honda', 'Fit', 21, 'SUV', 'Irvine', false],
+	['JORDANS', 'Honda', 'Civic', 30, 'Sedan', 'Irvine', false],
+	['THOMPSO', 'Tesla', 'S', 60, 'Coupe', 'Irvine', false],
+	['KLAYS11', 'Tesla', 'S', 55, 'Sedan', 'Los Angeles', false],
+	['MCGRADY', 'Tesla', 'X', 70, 'SUV', 'Los Angeles', false],
+	['STVNASH', 'BMW', '440i', 10, 'Coupe', 'Los Angeles', false],
+	['LAKER24', 'BMW', '328i', 18, 'Sedan', 'New York', false],
+	['KOBE824', 'BMW', 'X5', 16, 'SUV', 'New York', false],
+	['SHAQ034', 'BMW', 'Z4', 14, 'Coupe', 'Boston', false],
+	['DIRK034', 'Maserati', 'GranTurismo', 63, 'Coupe', 'Seattle', false],
+	['WADE003', 'Maserati', 'Ghibli', 30, 'Sedan', 'Seattle', false],
+	['NASH013', 'Maserati', 'Levante', 47, 'SUV', 'Phoenix', false],
+	['TMAC001', 'Hyundai', 'Tucson', 26, 'Sedan', 'South Carolina', false],
+	['GGYY123', 'Hyundai', 'Tucson', 26, 'Sedan', 'South Carolina', false],
+	['TRUMP87', 'Hyundai', 'Elantra', 26, 'Sedan', 'Las Vegas', false],
+	['9487HYC', 'Hyundai', 'Elantra', 26, 'Sedan', 'Las Vegas', false],
+	['NCSU517', 'Hyundai', 'Accent', 26, 'SUV', 'Florida', false]
 ]
 
 user_list = [
 	["Hank", "yul560@eng.ucsd.edu", "superadmin"],
 	["YuChia", 'liu19901124@gmail.com', 'superadmin'],
+	["Yu-Ching", 'ychu1991@gmail.com', 'superadmin'],
+	["OBOV", 'obov@gmail.com', 'admin'],
 	["Otto", "yhu22@ncsu.edu", "admin"],
+	["Kevin", "kevin@ncsu.edu", "admin"],
 	["Mitsui", 'yliu224@ncsu.edu', 'admin'],
 	["HYC", "hyc@ucsd.edu", "user"],
+	["xxxxCat", "xxxxCat@ucsd.edu", "user"],
+	["Z9", "z9@ucsd.edu", "user"],
+	["sumade", "sumade@ucsd.edu", "user"],
 	["Bunny", "bunny@ucsd.edu", "user"]
 ]
 
