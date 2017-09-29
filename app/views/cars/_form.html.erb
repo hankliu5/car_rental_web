@@ -1,36 +1,18 @@
-<div>
-  <hr>
-  <%= form_for @car do |f| %>
-    <% if @car.errors.any? %>
-      <ul>
-        <% @car.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    <% end %>
-    Plate
-    <%= f.text_field :plate %>
-    <br>
-    Make
-    <br>
-    <%= f.text_field :make %>
-    <br>
-    Model
-    <br>
-    <%= f.text_field :model %>
-    <br>
-    Rate
-    <br>
-    <%= f.number_field :rate %>
-    <br>
-    Style
-    <br>
-    <%= f.text_field :style %>
-    <br>
-    Location
-    <br>
-    <%= f.text_field :location %>
-    <br>
-    <%= f.submit "Submit", :disable_with => 'Submiting...' %>
+  <%= simple_form_for @car do |f| %>
+  <% if @car.errors.any? %>
+    <ul>
+      <% @car.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   <% end %>
-</div>
+  <div class="form-group">
+    <%= f.input :plate, input_html: { class: "form-control"} %>
+    <%= f.input :make, input_html: { class: "form-control"} %>
+    <%= f.input :model, input_html: { class: "form-control"} %>
+    <%= f.input :rate, input_html: { class: "form-control"} %>
+    <%= f.input :style, input_html: { class: "form-control"} %>
+    <%= f.input :location, input_html: { class: "form-control"} %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primaty", :disable_with => 'Submiting...' %>
+<% end %>

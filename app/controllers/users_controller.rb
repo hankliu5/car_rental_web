@@ -61,7 +61,7 @@ class UsersController < ApplicationController
     if @user.update_with_password(update_password_params)
       # Sign in the user by passing validation in case their password changed
       bypass_sign_in(@user)
-      redirect_to root_path
+      redirect_to root_path, notice: 'Your password has been modified!'
     else
       render :edit_password
     end

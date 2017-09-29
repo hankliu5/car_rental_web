@@ -1,36 +1,24 @@
-<h1>Reserve a Car</h1>
-<div>
-<%= form_for @reservation do |f| %>
+<%= simple_form_for @reservation do |f| %>
   <% if @reservation.errors.any? %>
-      <ul>
+    <ul>
       <% @reservation.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
+    </ul>
   <% end %>
-
-  <br>
-    <%= f.label :pick_up_time %><br>
-    <%= f.datetime_select :pick_up_time, default: Time.now, start_year: 2017, ampm: true%>
-
-  <br>
-  <br>
-    <%= f.label :return_time %><br>
-    <%= f.datetime_select :return_time, default: Time.now, start_year: 2017, ampm: true %>
-  <br>
+  <div class="form-group">
+    <%= f.input :pick_up_time, default: Time.now, start_year: 2017, ampm: true, input_html: { class: "form-control"} %>
+    <%= f.input :return_time, default: Time.now, start_year: 2017, ampm: true, input_html: { class: "form-control"} %>
     <%= f.hidden_field :car_id, value: @car.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
-  <br>
-    <% confirm_msg = 'Reservation Summary
+  </div>
+  <%= f.submit "Save", class: "btn btn-primaty", :disable_with => 'Submiting...',
+  data: { confirm: 'Reservation Summary
     Car Plate: ' + @car.plate + '
     Car Make: ' + @car.make + '
     Car Model: ' + @car.model + '
     Car Style: ' + @car.style + '
     Location: ' + @car.location + '
-    '
-    %>
-    <%= f.submit "Save", data: { confirm: confirm_msg } %>
-  <br>
-
+    ' } %>
 <% end %>
 </div>

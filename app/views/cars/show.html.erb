@@ -1,5 +1,12 @@
-<div>
-  <div>
+<div class="col-md-12">
+  <% if @car.errors.any? %>
+    <ul>
+      <% @car.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="group">
     <%= link_to("Edit Details", edit_car_path(@car)) %>
   </div>
   <h2>Plate:
@@ -19,7 +26,7 @@
   <% if @reservations.any? %>
     <div class="">
       <h2>Reservation History</h2>
-      <table>
+      <table class="table table-hover">
         <thead>
           <tr>
             <td>Username</td>
