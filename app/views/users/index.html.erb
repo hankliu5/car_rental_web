@@ -1,9 +1,9 @@
-<div>
-  <div>
+<div class="col-md-12">
+  <div class="user">
     <p><%= link_to("add a new #{current_user.roles[0].name}", new_user_path) %></p>
     <% if current_user.has_role? :superadmin %>
       <h2> Superadmins </h2>
-      <table>
+      <table class="table table-hover">
         <thead>
           <tr>
             <td>#</td>
@@ -24,7 +24,7 @@
     </div>
   <% end %>
   <h2>Admins</h2>
-  <table>
+  <table class="table table-hover">
     <thead>
       <tr>
         <td>#</td>
@@ -52,7 +52,7 @@
     </tbody>
   </table>
   <h2>Users</h2>
-  <table>
+  <table class="table table-hover">
     <thead>
       <tr>
         <td>#</td>
