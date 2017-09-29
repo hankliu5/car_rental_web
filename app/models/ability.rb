@@ -11,6 +11,7 @@ class Ability
       can :read, Car
       can %i[create read], Reservation
       cannot :crud, User
+      can :read, User.find(user.id)
     elsif user.has_role? :admin
       can :manage, Car
       can :manage, Reservation
