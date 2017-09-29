@@ -3,7 +3,7 @@ class CarsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @cars = Car.all
+    @cars = Car.search(params[:condition], params[:search])
   end
 
   def new

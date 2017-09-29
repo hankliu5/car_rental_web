@@ -6,7 +6,16 @@
   </div>
   <table>
     <thead>
-	  <h2>Available Cars </h2>
+	  <h2>Cars List</h2>
+      <%= form_tag cars_path, method: :get do %>
+        <% select_tag :condition, options_for_select([:Model, :Make, :Style, :Location, :Status], params[:condition]) %>
+        <p>
+          <%= text_field_tag :search, params[:search] %>
+          <%= submit_tag "Search" %>
+        </p>
+      <% end %>
+
+
       <tr>
         <td>#</td>
         <td>Plate</td>
