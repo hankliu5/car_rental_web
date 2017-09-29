@@ -51,8 +51,8 @@ class ReservationsController < ApplicationController
     @user = User.find(@reservation.user_id)
     @fee = ((@reservation.return_time.to_i - @reservation.pick_up_time.to_i)/3600) * @car.rate
     @user.fee += @fee
-    if @car.update_attribute(:checkout, false) && @user.update_attribute(:fee, @user.fee)
-      redirect_to reservations_path, notice: "The car #{@car.plate} has been returned! $#{@user.fee} has been posted to user's account."
+    if @car.update_attribute(:checkout, false) && @car.update_attribute(:reservation_time, nil) && @user.update_attribute(:fee, @user.fee)
+      redirect_to reservations_path, notice: "The car #{@car.plate} has been returned! $#{@fee} has been posted to user's account."
     else
       redirect_to reservation_path(@reservation_path), alert: 'something went wrong.'
     end

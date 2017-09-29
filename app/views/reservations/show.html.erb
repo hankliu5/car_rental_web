@@ -41,7 +41,7 @@
     </tbody>
   </table>
   <% if can? :manage, Reservation %>
-    <% if (@reservation.pick_up_time > Time.now) && !@car.checkout %>
+    <% if (@car.reservation_time > Time.now) && !@car.checkout %>
       <%= link_to "Check Out", {:controller => "reservations", :action => "check_out", id: @reservation.id } %>
     <% elsif @car.checkout %>
       <%= link_to "Return Car", {:controller => "reservations", :action => "return_car", id: @reservation.id } %>
