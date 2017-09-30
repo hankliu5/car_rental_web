@@ -2,7 +2,7 @@ class ReservationsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   def index
-    @all_reservations = Reservation.all
+    @all_reservations = Reservation.all.order(pick_up_time: :desc)
     @user_reservations = []
     @all_reservations.each do |r|
       @user_reservations << r if r.user_id == current_user.id
