@@ -30,7 +30,6 @@
     <tbody>
       <% @cars.each do |car| %>
         <tr>
-
           <td><%= link_to(car.plate, car_path(car)) %></td>
           <td><%= car.make %></td>
           <td><%= car.model %></td>
@@ -53,4 +52,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= will_paginate @cars %>
 </div>

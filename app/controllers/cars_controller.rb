@@ -3,7 +3,7 @@ class CarsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @cars = Car.search(params[:term], params[:category])
+    @cars = Car.search(params[:term], params[:category]).paginate(:page => params[:page], :per_page => 10)
   end
 
   def new
