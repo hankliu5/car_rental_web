@@ -41,7 +41,7 @@ class ReservationsController < ApplicationController
     if @car.update_attribute(:checkout, true)
       redirect_to reservations_path, notice: "The car #{@car.plate} has been checked out!"
     else
-      redirect_to reservation_path(@reservation_path), alert: 'something went wrong.'
+      redirect_to reservation_path(@reservation_path), alert: 'Something went wrong.'
     end
   end
 
@@ -54,7 +54,7 @@ class ReservationsController < ApplicationController
     if @car.update_attribute(:checkout, false) && @car.update_attribute(:reservation_time, nil) && @user.update_attribute(:fee, @user.fee)
       redirect_to reservations_path, notice: "The car #{@car.plate} has been returned! $#{@fee} has been posted to user's account."
     else
-      redirect_to reservation_path(@reservation_path), alert: 'something went wrong.'
+      redirect_to reservation_path(@reservation_path), alert: 'Something went wrong.'
     end
   end
 

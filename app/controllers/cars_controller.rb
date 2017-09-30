@@ -3,7 +3,7 @@ class CarsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @cars = Car.search(params[:condition], params[:search])
+    @cars = Car.search(params[:term], params[:category])
   end
 
   def new
@@ -14,7 +14,8 @@ class CarsController < ApplicationController
     @car = Car.new(car_params)
     @car.checkout = false
     if @car.save
-      redirect_to cars_path, notice: 'Car information has been created!'
+      flash[:success] = "New car has been create!"
+      redirect_to cars_path
     else
       render :new
     end
@@ -33,7 +34,8 @@ class CarsController < ApplicationController
     @car = Car.find(params[:id])
 
     if @car.update(car_params)
-      redirect_to cars_path, notice: 'Car information has been updated!'
+      flash[:success] = "Car information has been updated!"
+      redirect_to cars_path
     else
       render :edit
     end
@@ -42,7 +44,8 @@ class CarsController < ApplicationController
   def destroy
     @car = Car.find(params[:id])
     @car.destroy
-    redirect_to cars_path, alert: 'Car information has been deleted!'
+    flash[:success] = "Car information has been deleted!"
+    redirect_to cars_path
   end
 
   private
@@ -53,11 +56,11 @@ class CarsController < ApplicationController
 
   def check_status car
       if (car.reservation_time.nil?) || (car.reservation_time.to_i < Time.now.to_i) && !car.checkout
-          return "available"
+          return "Available"
       elsif ((car.reservation_time).to_i > Time.now.to_i) && !car.checkout
-          return "reserved"
+          return "Reserved"
       else
-          return "checked out"
+          return "Checked Out"
       end
   end
   helper_method :check_status
