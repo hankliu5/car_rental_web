@@ -132,4 +132,31 @@ class CarTest < ActiveSupport::TestCase
 		assert !car.valid?
 	end
 
+	# Tests checkout column is not nil
+	test 'check out is not nil' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'SUV', location: 'Raleigh')
+		car.save
+		assert !car.checkout.nil?
+	end
+
+	test 'check out is false' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'SUV', location: 'Raleigh')
+		car.save
+		assert !car.checkout
+	end
+
+	test 'check out is true' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'SUV', location: 'Raleigh')
+		car.checkout = true
+		car.save
+		assert car.checkout
+	end
+
+	# Tests reservation_time is nil
+	test 'reservation_time is nil' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'SUV', location: 'Raleigh')
+		car.save
+		assert car.reservation_time.nil?
+	end
+
 end

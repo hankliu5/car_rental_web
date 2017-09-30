@@ -1,4 +1,5 @@
 class Car < ApplicationRecord
+  after_initialize :set_checkout_default
   has_many :reservations, dependent: :destroy
   validates :plate, presence: true, length: { is: 7 }, uniqueness: true
   validates_format_of :plate, :with => /\A[a-zA-Z0-9]+\z/, :message => "Only allows letters and numbers."
@@ -37,5 +38,9 @@ class Car < ApplicationRecord
     else
       all
     end
+  end
+
+  def set_checkout_default
+    self.checkout = false
   end
 end

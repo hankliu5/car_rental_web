@@ -13,7 +13,6 @@ class CarsController < ApplicationController
 
   def create
     @car = Car.new(car_params)
-    @car.checkout = false
     if @car.save
       flash[:success] = "New car has been create!"
       redirect_to cars_path
