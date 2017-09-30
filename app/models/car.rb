@@ -2,7 +2,7 @@ class Car < ApplicationRecord
   has_many :reservations, dependent: :destroy
   validates :plate, presence: true, length: { is: 7}, uniqueness: true
 
-  validates_format_of :plate, :with => /[a-zA-Z\d]/, :message => "Only allows letters and numbers."
+  validates_format_of :plate, :with => /\A[a-zA-Z0-9]+\z/, :message => "Only allows letters and numbers."
 
   validates :make, :model, :location, presence: true
   validates :rate, presence: true, numericality: { only_integer: true, greater_than: 0 }
