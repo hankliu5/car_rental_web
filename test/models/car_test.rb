@@ -6,6 +6,7 @@ class CarTest < ActiveSupport::TestCase
 		assert car.valid?
 	end
 
+	# Tests plate
 	test 'valid plate with all lowercase' do
 		car = Car.new(plate: 'hankliu', make: :'Toyota', model: 'Camry', rate: 30, style: 'Sedan', location: 'Raleigh', checkout: false)
 		assert car.valid?
@@ -43,6 +44,91 @@ class CarTest < ActiveSupport::TestCase
 
 	test 'plate number contains special symbols' do
 		car = Car.new(plate: '000000*', make: :'Toyota', model: 'Camry', rate: 30, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'plate number is repeated' do
+		Car.create(plate: '1234567', make: :'Toyota', model: 'Camry', rate: 30, style: 'Sedan', location: 'Raleigh', checkout: false)
+		repeated_car = Car.new(plate: '1234567', make: :'Toyota', model: 'Camry', rate: 30, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !repeated_car.save
+	end
+
+	# Tests make, model are not presented
+	test 'make is not presented' do
+		car = Car.new(plate: '0000000', model: 'Camry', rate: 30, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'model is not presented' do
+		car = Car.new(plate: '000000*', make: :'Toyota', rate: 30, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	# Tests rate
+	test 'rate is missing' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'rate is zero' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 0, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'rate is negative' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: -20, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'rate is not integer' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 15.5, style: 'Sedan', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	# Tests style
+	test 'Coupe car' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'Coupe', location: 'Raleigh', checkout: false)
+		assert car.valid?
+	end
+
+	test 'SUV car' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'SUV', location: 'Raleigh', checkout: false)
+		assert car.valid?
+	end
+
+	test 'lowercase coupe' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'coupe', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'lowercase suv' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'suv', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'style is missing' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'style is something else' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'Hatchback', location: 'Raleigh', checkout: false)
+		assert !car.valid?
+	end
+
+	# Tests locations
+	test 'Location is missing' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'Coupe', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'Location contains numbers' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'Coupe', location: 'Raleigh 27610', checkout: false)
+		assert !car.valid?
+	end
+
+	test 'Location contains symbols' do
+		car = Car.new(plate: '6MVJ101', make: :'Toyota', model: 'Camry', rate: 30, style: 'Coupe', location: 'Raleigh~~~', checkout: false)
 		assert !car.valid?
 	end
 
