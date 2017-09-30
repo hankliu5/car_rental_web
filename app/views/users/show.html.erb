@@ -1,21 +1,41 @@
 <div class="col-md-12">
   <div class="group">
-    <p>User Name: <%= @user.username %></p>
-    <p>User Email: <%= @user.email %></p>
-    <% unless ((current_user.has_role? :superadmin) && (@user.has_role? :superadmin)) ||
+    <h2><%= @user.username %>'s Profile</h2>
+    <hr>
+    <table class="table table-hover">
+      <tr>
+        <td>
+          User Name:
+        </td>
+        <td><%= @user.username %></td>
+      </tr>
+      <tr>
+        <td>User Email:</td>
+        <td><%= @user.email %></td>
+      </tr>
+      <tr>
+        <td>Total Spent:</td>
+        <td><%= "$ #{@user.fee}" %></td>
+      </tr>
+    </table>
+    <% if can? [:manage, :crud], User %>
+      <% unless ((current_user.has_role? :superadmin) && (@user.has_role? :superadmin)) ||
     ((current_user.has_role? :admin) && ((@user.has_role? :admin) || (@user.has_role? :user))) %>
-    <%= link_to("Edit", edit_user_path(@user))%>
-  <% end %>
-  <% unless ((current_user.has_role? :superadmin) && (@user.has_role? :superadmin)) ||
+      <%= link_to("Edit", edit_user_path(@user))%>
+    <% end %>
+    <% unless ((current_user.has_role? :superadmin) && (@user.has_role? :superadmin)) ||
       ((current_user.has_role? :admin) && ((@user.has_role? :user) || (@user.id == current_user.id))) %>
-  <%= link_to("Delete", user_path(@user),
+    <%= link_to("Delete", user_path(@user),
 									method: :delete, data: { confirm: "Are you sure?" } )%>
+  <% end %>
 <% end %>
 </div>
+<hr>
 <% if @reservations.any? %>
   <div class="">
     <h2>Reservation History</h2>
-    <table>
+    <hr>
+    <table class="table table-hover">
       <thead>
         <tr>
           <td>Car Plate</td>
