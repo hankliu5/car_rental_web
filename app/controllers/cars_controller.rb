@@ -1,3 +1,4 @@
+require 'will_paginate/array'
 class CarsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
   load_and_authorize_resource

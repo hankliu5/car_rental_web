@@ -7,7 +7,7 @@
     </ul>
   <% end %>
   <div class="reservation">
-    <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => @car.id } %>
+    <%= link_to "Reserve", {:controller => "reservations", :action => "new", :car_id => @car.id }, class: "btn btn-sm btn-default" %>
   </div>
   <h2>Reservation Details</h2>
   <table class="table table-hover">
@@ -29,7 +29,7 @@
         <td><%= @car.model %></td>
         <td><%= @reservation.pick_up_time %></td>
         <td><%= @reservation.return_time %></td>
-        <td><%= link_to "show car's detail", car_path(@car) %></td>
+        <td><%= link_to "Car's Detail", car_path(@car), class: "btn btn-sm btn-default" %></td>
         <td>
           <% if can? :manage, Reservation %>
             <%= link_to("Edit", edit_reservation_path)%>
@@ -42,9 +42,9 @@
   </table>
   <% if can? :manage, Reservation %>
     <% if (@car.reservation_time > Time.now) && !@car.checkout %>
-      <%= link_to "Check Out", {:controller => "reservations", :action => "check_out", id: @reservation.id } %>
+      <%= link_to "Check Out a Car", {:controller => "reservations", :action => "check_out", id: @reservation.id }, class: "btn btn-sm btn-default" %>
     <% elsif @car.checkout %>
-      <%= link_to "Return Car", {:controller => "reservations", :action => "return_car", id: @reservation.id } %>
+      <%= link_to "Return Car", {:controller => "reservations", :action => "return_car", id: @reservation.id }, class: "btn btn-sm btn-default" %>
     <% end %>
   <% end %>
 </div>

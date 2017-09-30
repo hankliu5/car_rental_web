@@ -24,8 +24,8 @@
               <td><%= car.model %></td>
               <td><%= reservation.pick_up_time %></td>
               <td><%= reservation.return_time %></td>
-              <td><%= link_to "Show Car's Detail", car_path(car) %></td>
-              <td><%= link_to "Show Reservation's Detail", reservation_path(reservation) %></td>
+              <td><%= link_to "Car's Detail", car_path(car), class: "btn btn-sm btn-default" %></td>
+              <td><%= link_to "Reservation's Detail", reservation_path(reservation), class: "btn btn-sm btn-default" %></td>
               <td>
                 <% if can? :manage, Reservation %>
                   <%= link_to("Edit", {:controller => "reservations", :action => "edit", :id => reservation.id, :car_id => car.id, :user_id => user.id }, class: "btn btn-sm btn-default")%>
