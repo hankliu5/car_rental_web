@@ -11,7 +11,7 @@
         <p>
           <%= select_tag :category, options_for_select([:Make, :Model, :Style, :Location, :Status], params[:category]) %>
           <%= text_field_tag :term, params[:term] %>
-          <%= submit_tag "Search" %>
+          <%= submit_tag "Search", class: "btn btn-sm btn-default" %>
         </p>
       <% end %>
 
@@ -24,6 +24,7 @@
         <td>Style</td>
         <td>Location</td>
         <td>Status</td>
+        <td></td>
       </tr>
     </thead>
     <tbody>
@@ -44,7 +45,7 @@
                               method: :delete, data: { confirm: "Are you sure?" } )%>
             <% else %>
               <% if check_status(car) == "Available" %>
-                <%= link_to "Make a Reservation", {:controller => "reservations", :action => "new", :car_id => car.id }%>
+                <%= link_to("Reserve", {:controller => "reservations", :action => "new", :car_id => car.id }, class: "btn btn-sm btn-default")%>
               <% end %>
             <% end %>
           </td>

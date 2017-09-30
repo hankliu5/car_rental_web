@@ -37,7 +37,11 @@ car_list = [
 	['GGYY123', 'Hyundai', 'Tucson', 26, 'Sedan', 'South Carolina', false],
 	['TRUMP87', 'Hyundai', 'Elantra', 26, 'Sedan', 'Las Vegas', false],
 	['9487HYC', 'Hyundai', 'Elantra', 26, 'Sedan', 'Las Vegas', false],
-	['NCSU517', 'Hyundai', 'Accent', 26, 'SUV', 'Florida', false]
+	['NCSU517', 'Hyundai', 'Accent', 26, 'SUV', 'Florida', false],
+	['THX9527', 'Porsche', '911 Carrera', 88, 'Coupe', 'Taiwan', false],
+	['THX9487', 'Porsche', '911 Carrera', 88, 'Coupe', 'Taiwan', false],
+	['THX0857', 'Porsche', 'Cayenne', 90, 'SUV', 'Austin', false],
+	['THX7777', 'Porsche', 'Cayenne', 90, 'SUV', 'Austin', false]
 ]
 
 user_list = [

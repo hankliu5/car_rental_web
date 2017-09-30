@@ -22,12 +22,34 @@ class Car < ApplicationRecord
   end
 
   def self.search(term, category)
-    term.to_s.downcase
+    term.to_s.downcase!
     if term && category
-        where("#{category} LIKE ?", "%#{term}%")
+        if category == "Status"
+            cars = [] # array
+            Car.all.each do |car|
+                case term
+                when "available"
+                    if (car.reservation_time.nil?) || (car.reservation_time.to_i < Time.now.to_i) && !car.checkout
+                        cars << car
+                    end
+                when "reserved"
+                    if ((car.reservation_time).to_i > Time.now.to_i) && !car.checkout
+                        cars << car
+                    end
+                when "checked out"
+                    if car.checkout
+                        cars << car
+                    end
+                end
+            end
+            return cars
+        else
+            where("#{category} LIKE ?", "%#{term}%")
+        end
     else
         all
     end
   end
+
 
 end
