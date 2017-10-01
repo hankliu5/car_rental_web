@@ -21,6 +21,7 @@ class ReservationsController < ApplicationController
     @car = Car.find(@reservation.car_id)
     if !check_reservation_invalid? && @reservation.save
         @car.update_attribute(:reservation_time, (@reservation.pick_up_time + 30*60))
+        @car.update_attribute(:return_time, (@reservation.return_time))
       redirect_to reservation_path(@reservation)
     else
         flash_notice

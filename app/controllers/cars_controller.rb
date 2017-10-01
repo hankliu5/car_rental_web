@@ -56,7 +56,11 @@ class CarsController < ApplicationController
   end
 
   def check_status car
-      if (car.reservation_time.nil?) || (car.reservation_time.to_i < Time.now.to_i) && !car.checkout
+      if (car.checkout && (car.return_time).to_i < Time.now.to_i)
+          car.update_attribute(:checkout, false)
+          #@fee =
+          return "Available"
+      elsif (car.reservation_time.nil?) || (car.reservation_time.to_i < Time.now.to_i) && !car.checkout
           return "Available"
       elsif ((car.reservation_time).to_i > Time.now.to_i) && !car.checkout
           return "Reserved"
