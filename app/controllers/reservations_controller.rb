@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
-
+  console
   def index
     @all_reservations = Reservation.all
     @user_reservations = []
@@ -19,9 +19,12 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @car = Car.find(@reservation.car_id)
+    @user = User.find(@reservation.user_id)
     if !check_reservation_invalid? && @reservation.save
         @car.update_attribute(:reservation_time, (@reservation.pick_up_time + 30*60))
         @car.update_attribute(:return_time, (@reservation.return_time))
+        @car.update_attribute(:reservation_id, @reservation.id)
+        @user.update_attribute(:reservation_id, @reservation.id)
       redirect_to reservation_path(@reservation)
     else
         flash_notice
