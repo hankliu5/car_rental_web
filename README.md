@@ -23,9 +23,15 @@ Naruto | naruto@gmail.com | 123456 | user
 Luffy | luffy@gmail.com | 123456 | user
 Bunny | bunny@ucsd.edu | 123456 | user
 
-**Note**
+**Note1**
 
 We provide many sets of user for testing. If you find the password is wrong, it maybe because other testers already change the password for test. If you can not find any working account (Superadmin/admin), please email _yhu22@ncsu.edu_ or _yliu224@ncsu.edu_ to let us know, we will rehost the website to reset everything. Thank you for your help!
+
+**Note2**
+
+When reserve a car, default time is the current time, we dump the second, so a user have to make a reservation at least one minute late than current time. Otherwise, the system will take it as past time.
+
+
 
 # Program 2: Ruby on Rails: Car-rental app
 
