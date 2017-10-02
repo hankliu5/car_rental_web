@@ -53,15 +53,23 @@ car_list = [
 user_list = [
 	["Hank", "yul560@eng.ucsd.edu", "superadmin"],
 	["YuChia", "liu19901124@gmail.com", "superadmin"],
-	["Yu-Ching", "ychu1991@gmail.com", "superadmin"],
+	["Hu", "ychu1991@gmail.com", "superadmin"],
 	["OBOV", "obov@gmail.com", "admin"],
 	["Otto", "yhu22@ncsu.edu", "admin"],
-	["Kevin", "kevin@ncsu.edu", "admin"],
+	["Kevin", "kevin@ucsd.edu", "admin"],
+	["Chris", "chris@ucsd.edu", "admin"],
 	["Mitsui", "yliu224@ncsu.edu", "admin"],
+	["Kurapika", "kurapika@gmail.com", "admin"],
+	["Conan", "conan@gmail.com", "admin"],
+	["Kagura", "kagura@gmail.com", "admin"],
 	["HYC", "hyc@ucsd.edu", "user"],
-	["xxxxCat", "xxxxCat@ucsd.edu", "user"],
-	["Z9", "z9@ucsd.edu", "user"],
-	["sumade", "sumade@ucsd.edu", "user"],
+	["XXXXCat", "xxxxCat@gmail.com", "user"],
+	["Z9", "z9@gmail.com", "user"],
+	["sumade", "sumade@gmail.com", "user"],
+	["Willie", "willie@ucsd.edu", "user"],
+	["Saitama", "saitama@gmail.com", "user"],
+	["Naruto", "naruto@gmail.com", "user"],
+	["Luffy", "luffy@gmail.com", "user"],
 	["Bunny", "bunny@ucsd.edu", "user"]
 ]
 

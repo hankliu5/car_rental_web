@@ -58,7 +58,13 @@ class CarsController < ApplicationController
   def check_status car
       if (car.checkout && (car.return_time).to_i < Time.now.to_i)
           car.update_attribute(:checkout, false)
-          #@fee =
+          @reservation = Reservation.find(car.reservation_id)
+
+          @fee = (((@reservation.return_time.to_i) - (@reservation.pick_up_time.to_i))*car.rate)/3600
+          # pass fee to user's account
+          @user = User.find(@reservation.user_id)
+          @user.fee += @fee
+          @user.update_attribute(:fee, @user.fee)
           return "Available"
       elsif (car.reservation_time.nil?) || (car.reservation_time.to_i < Time.now.to_i) && !car.checkout
           return "Available"
