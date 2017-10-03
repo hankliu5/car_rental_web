@@ -4,35 +4,7 @@ class CarsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @cars = if Rails.env.to_sym == :production && params[:term].present?
-              case params[:category].to_sym
-              when :make
-                Car.search_by_make(params[:term])
-              when :model
-                Car.search_by_model(params[:term])
-              when :style
-                Car.search_by_style(params[:term])
-              when :location
-                Car.search_by_location(params[:term])
-              when :status
-                cars = [] # array
-                Car.all.each do |car|
-                  case term
-                  when 'available'
-                    if car.reservation_time.nil? || (car.reservation_time.to_i < Time.now.to_i) && !car.checkout
-                      cars << car
-                    end
-                  when 'reserved'
-                    if (car.reservation_time.to_i > Time.now.to_i) && !car.checkout
-                      cars << car
-                    end
-                  when 'checked out'
-                    cars << car if car.checkout
-                  end
-                end
-                cars
-              end
-            elsif Rails.env.to_sym == :development || Rails.env.to_sym == :test
+    @cars = if params[:term].present? && params[:category].present?
               Car.order(:make, :model, :rate).search(params[:term], params[:category])
             else
               Car.all
