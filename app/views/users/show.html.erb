@@ -13,10 +13,12 @@
         <td>User Email:</td>
         <td><%= @user.email %></td>
       </tr>
-      <tr>
-        <td>Total Spent:</td>
-        <td><%= "$ #{@user.fee}" %></td>
-      </tr>
+      <% unless (@user.has_role? :superadmin) || (@user.has_role? :admin)%>
+        <tr>
+          <td>Total Spent:</td>
+          <td><%= "$ #{@user.fee}" %></td>
+        </tr>
+      <% end %>
     </table>
     <% if can? [:manage, :crud], User %>
       <% unless ((current_user.has_role? :superadmin) && (@user.has_role? :superadmin)) ||

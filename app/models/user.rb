@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :reservations, dependent: :destroy
 
   validates :username, presence: true
-  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, multiline: true,
+                       message: "only allow character, number with underscore and dot"
   validates :password,
             # you only need presence on create
             presence: { on: :create },
