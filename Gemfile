@@ -62,6 +62,7 @@ end
 
 group :production do
   gem "pg"
+  gem 'pg_search'
   gem 'rails_12factor'
 end
 
