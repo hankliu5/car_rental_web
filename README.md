@@ -1,3 +1,38 @@
+# Credential
+
+Name | Email | Password | Role
+------------ | ------------- | ------------- | ------------
+Hank | yul560@eng.ucsd.edu | 123456 | Superadmin
+YuChia | liu19901124@gmail.com | 123456 | Superadmin
+Hu | ychu1991@gmail.com | 123456 | Superadmin
+OBOV | obov@gmail.com | 123456 | admin
+Otto | yhu22@ncsu.edu | 123456 | admin
+Kevin | kevin@ucsd.edu | 123456 | admin
+Chris | chris@ucsd.edu | 123456 | admin
+Mitsui | yliu224@ncsu.edu | 123456 | admin
+Kurapika | kurapika@gmail.com | 123456 | admin
+Conan | conan@gmail.com | 123456 | admin
+Kagura | kagura@gmail.com | 123456 | admin
+HYC | hyc@ucsd.edu | 123456 | user
+XXXXCat | xxxxCat@gmail.com | 123456 | user
+Z9 | z9@gmail.com | 123456 | user
+sumade | sumade@gmail.com | 123456 | user
+Willie | willie@ucsd.edu | 123456 | user
+Saitama | saitama@gmail.com | 123456 | user
+Naruto | naruto@gmail.com | 123456 | user
+Luffy | luffy@gmail.com | 123456 | user
+Bunny | bunny@ucsd.edu | 123456 | user
+
+**Note1**
+
+We provide many sets of user for testing. If you find the password is wrong, it maybe because other testers already change the password for test. If you can not find any working account (Superadmin/admin), please email _yhu22@ncsu.edu_ or _yliu224@ncsu.edu_ to let us know, we will rehost the website to reset everything. Thank you for your help!
+
+**Note2**
+
+When reserve a car, default time is the current time, we dump the second, so a user have to make a reservation at least one minute late than current time. Otherwise, the system will take it as past time.
+
+
+
 # Program 2: Ruby on Rails: Car-rental app
 
 You are tasked with creating a car-rental app.
