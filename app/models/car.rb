@@ -28,7 +28,7 @@ class Car < ApplicationRecord
         end
         cars
       else
-        if Rails.env != :production
+        if Rails.env.to_sym != :production
           where("#{category} LIKE ?", "%#{term}%")
         else
           where("#{category} ILIKE ?", "%#{term}%")
