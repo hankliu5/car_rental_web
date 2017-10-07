@@ -7,8 +7,8 @@
     </ul>
   <% end %>
   <div class="form-group">
-    <%= f.input :pick_up_time, default: Time.now, start_year: 2017, ampm: true, input_html: { class: "form-control"} %>
-    <%= f.input :return_time, default: Time.now, start_year: 2017, ampm: true, input_html: { class: "form-control"} %>
+    <%= f.input :pick_up_time, default: Time.now + 60, start_year: 2017, ampm: true, input_html: { class: "form-control"} %>
+    <%= f.input :return_time, default: Time.now + 60*61, start_year: 2017, ampm: true, input_html: { class: "form-control"} %>
     <%= f.hidden_field :car_id, value: @car.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
   </div>
