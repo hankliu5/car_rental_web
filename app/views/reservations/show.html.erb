@@ -41,9 +41,9 @@
     </tbody>
   </table>
 
-      <% if (@car.reservation_time.to_i > Time.now.to_i) && !@car.checkout %>
+      <% if (@car.reservation_time.to_i > Time.now.to_i) && !@car.checkout && !@reservation.done %>
         <%= link_to "Check Out a Car", {:controller => "reservations", :action => "check_out", id: @reservation.id }, class: "btn btn-sm btn-default" %>
-      <% elsif @car.checkout && @reservation.return_time.to_i > Time.now.to_i  %>
+      <% elsif @car.checkout && @reservation.return_time.to_i > Time.now.to_i && !@reservation.done %>
         <%= link_to "Return Car", {:controller => "reservations", :action => "return_car", id: @reservation.id }, class: "btn btn-sm btn-default" %>
       <% end %>
 
