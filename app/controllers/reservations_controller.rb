@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:check_out, :return_car]
   def index
     @all_reservations = Reservation.all.order(pick_up_time: :desc)
     @user_reservations = []
