@@ -41,7 +41,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @car = Car.find(@reservation.car_id)
 
-    if @car.update_attribute(:checkout, true)
+    if @car.update_attribute(:checkout, true) && @car.save
       redirect_to reservations_path, notice: "The car #{@car.plate} has been checked out!"
     else
       redirect_to reservation_path(@reservation_path), alert: 'Something went wrong.'
